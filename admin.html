@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>住户管理系统 - 管理后台</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=20260731">
+    <script src="assets/js/qrcode.min.js"></script>
+</head>
+<body data-i18n-title="titleAdmin">
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1 data-i18n="appTitle">住户管理系统</h1>
+            <div class="user-info">
+                <div class="lang-switcher" id="langSwitcher">
+                    <select id="langSelect" title="Language">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                        <option value="ms">Bahasa Melayu</option>
+                    </select>
+                </div>
+                <span id="adminUsername"></span>
+                <button type="button" id="adminSettingsBtn" class="btn btn-outline" data-i18n="adminSettings">Settings</button>
+                <a href="manual.html" class="btn btn-outline" data-i18n="userManual">用户手册</a>
+                <button id="logoutBtn" class="btn btn-secondary" data-i18n="logout">退出登录</button>
+            </div>
+        </header>
+
+        <div id="adminSettingsModal" class="records-modal" style="display: none;" aria-hidden="true">
+            <div class="records-modal-mask" id="adminSettingsMask"></div>
+            <div class="records-modal-content admin-settings-modal-content">
+                <div class="records-modal-header">
+                    <h2 data-i18n="settingsTitle" style="margin: 0; font-size: 1.15rem;">Account settings</h2>
+                    <button type="button" class="btn btn-secondary btn-small" id="adminSettingsClose" data-i18n="close">Close</button>
+                </div>
+                <p class="settings-hint" data-i18n="settingsPasswordHint"></p>
+                <form id="adminSettingsForm" class="admin-settings-form">
+                    <div class="form-group">
+                        <label for="settingsUsername" data-i18n="username">Username</label>
+                        <input type="text" id="settingsUsername" name="username" required autocomplete="username" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="settingsPhone" data-i18n="adminContactPhone">Contact phone</label>
+                        <input type="text" id="settingsPhone" name="phone" autocomplete="tel" maxlength="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="settingsEmail" data-i18n="email">Email</label>
+                        <input type="email" id="settingsEmail" name="email" autocomplete="email" maxlength="255">
+                    </div>
+                    <p class="settings-hint" style="font-size: 12px;" data-i18n="emailBindHint"></p>
+                    <div class="form-group">
+                        <label for="settingsCurrentPassword" data-i18n="currentPassword">Current password</label>
+                        <input type="password" id="settingsCurrentPassword" name="current_password" required autocomplete="current-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="settingsNewPassword" data-i18n="newPasswordOptional">New password</label>
+                        <input type="password" id="settingsNewPassword" name="new_password" autocomplete="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="settingsNewPassword2" data-i18n="confirmNewPassword">Confirm new password</label>
+                        <input type="password" id="settingsNewPassword2" name="new_password_confirm" autocomplete="new-password">
+                    </div>
+                    <div id="adminSettingsError" class="error-message" role="alert"></div>
+                    <div class="form-row form-row-submit" style="margin-top: 16px;">
+                        <button type="submit" class="btn btn-primary" data-i18n="saveSettings" style="width: 100%;">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="editResidentModal" class="records-modal" style="display: none;" aria-hidden="true">
+            <div class="records-modal-mask" id="editResidentMask"></div>
+            <div class="records-modal-content admin-settings-modal-content edit-resident-modal-content">
+                <div class="records-modal-header">
+                    <h2 data-i18n="editResidentTitle" style="margin: 0; font-size: 1.15rem;">Edit resident</h2>
+                    <button type="button" class="btn btn-secondary btn-small" id="editResidentClose" data-i18n="close">Close</button>
+                </div>
+                <form id="editResidentForm" class="form-create-qr" style="margin-top: 8px;">
+                    <input type="hidden" id="editResidentId" value="">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editResidentName"><span data-i18n="nameRemark">Name</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="text" id="editResidentName" required maxlength="255" data-i18n-placeholder="placeholderName" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="editResidentBuilding"><span data-i18n="buildingUnit">Building</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="text" id="editResidentBuilding" required data-i18n-placeholder="placeholderBuilding" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editResidentRoom"><span data-i18n="roomNumber">Room</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="text" id="editResidentRoom" required data-i18n-placeholder="placeholderRoom" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="editResidentDate"><span data-i18n="qrCreatedDate">QR date</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="date" id="editResidentDate" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editResidentPhone"><span data-i18n="phone">Phone</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="text" id="editResidentPhone" required data-i18n-placeholder="placeholderPhone" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="editResidentUsername" data-i18n="residentUsernameOptional">Login username (optional)</label>
+                            <input type="text" id="editResidentUsername" autocomplete="off" data-i18n-placeholder="placeholderResidentUsername" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editResidentPassword" data-i18n="password">Password</label>
+                            <input type="password" id="editResidentPassword" autocomplete="new-password" data-i18n-placeholder="placeholderEditResidentPwd" placeholder="">
+                        </div>
+                    </div>
+                    <div id="editResidentError" class="error-message" role="alert"></div>
+                    <div class="form-row form-row-submit">
+                        <button type="submit" class="btn btn-primary" data-i18n="saveEditResident" style="width: 100%;">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <section class="section">
+                <h2 data-i18n="createQR">生成二维码</h2>
+                <p class="section-hint" data-i18n="createQRHint">请先填写下方名字、单元楼、门牌号、二维码创建日期、电话号码、密码，方可生成二维码。住户可使用电话号码或用户名与密码在登录页「住户登录」进入查看自己的二维码。</p>
+                <form id="createQRForm" class="form-create-qr">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="qrName"><span data-i18n="nameRemark">名字/备注</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="text" id="qrName" name="name" required data-i18n-placeholder="placeholderName" placeholder="请输入名字或备注">
+                        </div>
+                        <div class="form-group">
+                            <label for="qrBuildingUnit"><span data-i18n="buildingUnit">单元楼</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="text" id="qrBuildingUnit" name="building_unit" required data-i18n-placeholder="placeholderBuilding" placeholder="例如：A栋、1单元">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="qrRoomNumber"><span data-i18n="roomNumber">门牌号</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="text" id="qrRoomNumber" name="room_number" required data-i18n-placeholder="placeholderRoom" placeholder="例如：101、2-301">
+                        </div>
+                        <div class="form-group">
+                            <label for="qrCreatedDate"><span data-i18n="qrCreatedDate">二维码创建日期</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="date" id="qrCreatedDate" name="qr_created_date" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="qrPhone"><span data-i18n="phone">电话号码</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="text" id="qrPhone" name="phone" required data-i18n-placeholder="placeholderPhone" placeholder="住户登录用电话号码">
+                        </div>
+                        <div class="form-group">
+                            <label for="qrResidentUsername"><span data-i18n="residentUsernameOptional">住户登录用户名（可选）</span></label>
+                            <input type="text" id="qrResidentUsername" name="resident_username" autocomplete="off" data-i18n-placeholder="placeholderResidentUsername" placeholder="字母/数字/下划线，2～64字符">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="qrPassword"><span data-i18n="password">密码</span> <span class="required" data-i18n="required">*</span></label>
+                            <input type="password" id="qrPassword" name="password" required data-i18n-placeholder="placeholderPassword" placeholder="住户登录用密码">
+                        </div>
+                    </div>
+                    <div class="form-row form-row-submit">
+                        <button type="submit" class="btn btn-primary" data-i18n="btnCreateQR">生成二维码</button>
+                    </div>
+                </form>
+                <div id="qrResult" class="qr-result"></div>
+            </section>
+
+            <section class="section">
+                <h2 data-i18n="myQRCodes">我的二维码</h2>
+                <p class="section-hint">
+                    <span data-i18n="recentThreeUsersHint">此区域仅显示最近创建的3位用户。</span>
+                    <a href="admin_users.html" class="btn btn-outline btn-small" style="margin-left:10px;" data-i18n="viewAllUsers">查看全部用户</a>
+                </p>
+                <div id="qrList" class="qr-list"></div>
+            </section>
+
+            <section class="section">
+                <h2 data-i18n="scanRecords">扫描记录</h2>
+                <p class="section-hint">
+                    <span data-i18n="todayRecordsHint">以下仅显示当天扫描记录。</span>
+                    <a href="admin_records_calendar.html" class="btn btn-outline btn-small" style="margin-left:10px;" data-i18n="viewAllScanRecords">进入全部扫描记录</a>
+                    <a href="admin_activity.html" class="btn btn-outline btn-small" style="margin-left:10px;" data-i18n="viewUserActivities">用户操作监控</a>
+                    <span id="recordsRefreshHint" style="color:#666;font-size:12px;"></span>
+                </p>
+                <div class="table-container">
+                    <table id="recordsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th data-i18n="id">ID</th>
+                                <th data-i18n="nameRemarkCol">名字/备注</th>
+                                <th data-i18n="buildingUnit">单元楼</th>
+                                <th data-i18n="roomNumber">门牌号</th>
+                                <th data-i18n="qrCreatedDate">二维码创建日期</th>
+                                <th data-i18n="phoneCol">手机号码</th>
+                                <th data-i18n="visitorIP">访客IP</th>
+                                <th data-i18n="scanTime">扫描时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recordsBody">
+                            <tr>
+                                <td colspan="8" class="loading" data-i18n="loading">加载中...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="pagination"></div>
+            </section>
+        </div>
+    </div>
+    <script src="assets/js/i18n.js?v=20260731"></script>
+    <script src="assets/js/edit_resident.js?v=20260313"></script>
+    <script src="assets/js/admin.js?v=20260313"></script>
+    <footer class="site-footer">
+        <div class="site-footer-title">Resident Management System</div>
+        <div class="site-footer-copy">Copyright &copy; 2026 Desmond Liew. All Rights Reserved.</div>
+    </footer>
+</body>
+</html>

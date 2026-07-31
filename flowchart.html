@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>住户管理系统 - 流程图 Flowchart</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 24px; margin: 0; }
+        h1 { text-align: center; color: #333; margin-bottom: 24px; }
+        .flow-wrap { max-width: 900px; margin: 0 auto; background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        svg { display: block; margin: 0 auto; }
+        .link { fill: none; stroke: #333; stroke-width: 2; marker-end: url(#arrowhead); }
+        .node-start-end { fill: #ffeb99; stroke: #333; stroke-width: 2; }
+        .node-decision { fill: #b3d9ff; stroke: #333; stroke-width: 2; }
+        .node-process { fill: #ffeb99; stroke: #333; stroke-width: 2; }
+        .node-logout { fill: #b3d9ff; stroke: #333; stroke-width: 2; rx: 12; ry: 12; }
+        text { font-size: 13px; font-family: Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; }
+        .small { font-size: 11px; }
+        .site-footer {
+            text-align: center;
+            margin: 20px -24px -24px;
+            padding: 10px 12px 12px;
+            border-top: 1px solid #2b3548;
+            background: linear-gradient(180deg, #202b3f 0%, #131a27 100%);
+        }
+        .site-footer-title {
+            font-size: 13px;
+            line-height: 1.4;
+            letter-spacing: 0.3px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .site-footer-copy {
+            margin-top: 2px;
+            font-size: 12px;
+            line-height: 1.4;
+            letter-spacing: 0.2px;
+            color: rgba(255, 255, 255, 0.72);
+        }
+    </style>
+</head>
+<body>
+    <h1>住户管理系统流程图 Flowchart</h1>
+    <div class="flow-wrap">
+        <svg width="860" height="740" viewBox="0 0 860 740">
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+                </marker>
+            </defs>
+
+            <!-- Start -->
+            <ellipse class="node-start-end" cx="430" cy="40" rx="52" ry="24" />
+            <text x="430" y="40">Start</text>
+
+            <!-- Arrow: Start to Login decision -->
+            <path class="link" d="M 430 64 L 430 88" />
+
+            <!-- Login decision (center) -->
+            <path class="node-decision" d="M 430 88 L 510 148 L 430 208 L 350 148 Z" />
+            <text x="430" y="148">登录方式?</text>
+            <text x="430" y="165" class="small">Login Type?</text>
+
+            <!-- Arrow to Resident branch -->
+            <path class="link" d="M 350 148 L 220 148" />
+            <text x="280" y="140" class="small">住户 Resident</text>
+            <!-- Arrow to Admin branch -->
+            <path class="link" d="M 510 148 L 640 148" />
+            <text x="570" y="140" class="small">管理员 Admin</text>
+
+            <!-- ========== Resident Path (Left) ========== -->
+            <!-- 住户登录 -->
+            <path class="node-decision" d="M 120 148 L 200 188 L 120 228 L 40 188 Z" />
+            <text x="120" y="188">住户登录</text>
+            <text x="120" y="205" class="small">Resident Login</text>
+
+            <path class="link" d="M 120 228 L 120 268" />
+            <!-- 住户中心 / Dashboard -->
+            <rect class="node-process" x="40" y="268" width="160" height="44" rx="4" />
+            <text x="120" y="290">住户中心 Dashboard</text>
+
+            <path class="link" d="M 120 312 L 120 352" />
+            <!-- 我的资料 -->
+            <rect class="node-process" x="40" y="352" width="160" height="44" rx="4" />
+            <text x="120" y="374">我的资料 View Profile</text>
+
+            <path class="link" d="M 120 396 L 120 436" />
+            <!-- 我的二维码 -->
+            <rect class="node-process" x="40" y="436" width="160" height="44" rx="4" />
+            <text x="120" y="458">我的二维码 My QR Codes</text>
+
+            <path class="link" d="M 120 480 L 120 536" />
+            <!-- Logout (left) -->
+            <rect class="node-logout" x="40" y="536" width="160" height="44" />
+            <text x="120" y="558">退出登录 Logout</text>
+
+            <!-- ========== Admin Path (Right) ========== -->
+            <!-- 管理员登录 -->
+            <path class="node-decision" d="M 640 148 L 720 188 L 640 228 L 560 188 Z" />
+            <text x="640" y="188">管理员登录</text>
+            <text x="640" y="205" class="small">Admin Login</text>
+
+            <path class="link" d="M 640 228 L 640 268" />
+            <!-- 管理后台 -->
+            <rect class="node-process" x="560" y="268" width="160" height="44" rx="4" />
+            <text x="640" y="290">管理后台 Dashboard</text>
+
+            <path class="link" d="M 640 312 L 640 352" />
+            <!-- 生成二维码 -->
+            <rect class="node-process" x="560" y="352" width="160" height="44" rx="4" />
+            <text x="640" y="374">生成二维码 Generate QR</text>
+
+            <path class="link" d="M 640 396 L 640 436" />
+            <!-- 我的二维码 -->
+            <rect class="node-process" x="560" y="436" width="160" height="44" rx="4" />
+            <text x="640" y="458">我的二维码 My QR Codes</text>
+
+            <path class="link" d="M 640 480 L 640 520" />
+            <!-- 扫描记录 -->
+            <rect class="node-process" x="560" y="520" width="160" height="44" rx="4" />
+            <text x="640" y="542">扫描记录 Scan Records</text>
+
+            <path class="link" d="M 640 564 L 640 600" />
+            <!-- 进入扫描页面 (optional) -->
+            <rect class="node-process" x="560" y="600" width="160" height="44" rx="4" />
+            <text x="640" y="622">进入扫描页面 Go to Scan Page</text>
+
+            <path class="link" d="M 640 644 L 640 668" />
+            <!-- Logout (right) -->
+            <rect class="node-logout" x="560" y="668" width="160" height="44" />
+            <text x="640" y="690">退出登录 Logout</text>
+
+            <!-- ========== Merge to End ========== -->
+            <path class="link" d="M 120 558 L 120 710 L 430 710" />
+            <path class="link" d="M 640 690 L 640 710 L 430 710" />
+            <!-- End -->
+            <ellipse class="node-start-end" cx="430" cy="710" rx="52" ry="24" />
+            <text x="430" y="710">End</text>
+
+            <!-- Label: Scan flow (visitor) - optional side note -->
+            <text x="430" y="380" class="small" fill="#666">（访客可经「进入扫描页面」打开扫描页扫码）</text>
+        </svg>
+    </div>
+    <footer class="site-footer">
+        <div class="site-footer-title">Resident Management System</div>
+        <div class="site-footer-copy">Copyright &copy; 2026 Desmond Liew. All Rights Reserved.</div>
+    </footer>
+</body>
+</html>

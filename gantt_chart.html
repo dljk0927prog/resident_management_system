@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gantt Chart — Resident Management System</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 24px; margin: 0; }
+        h1 { text-align: center; color: #333; margin-bottom: 8px; }
+        .sub { text-align: center; color: #666; font-size: 14px; margin-bottom: 24px; }
+        .wrap { max-width: 720px; margin: 0 auto; background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow-x: auto; }
+        table { border-collapse: collapse; width: 100%; min-width: 480px; }
+        th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; vertical-align: middle; }
+        th { background: #667eea; color: #fff; font-weight: 600; }
+        th.gantt-head { text-align: center; min-width: 60px; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .task-name { font-weight: 500; min-width: 200px; }
+        .site-footer {
+            text-align: center;
+            margin: 20px -24px -24px;
+            padding: 10px 12px 12px;
+            border-top: 1px solid #2b3548;
+            background: linear-gradient(180deg, #202b3f 0%, #131a27 100%);
+        }
+        .site-footer-title {
+            font-size: 13px;
+            line-height: 1.4;
+            letter-spacing: 0.3px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .site-footer-copy {
+            margin-top: 2px;
+            font-size: 12px;
+            line-height: 1.4;
+            letter-spacing: 0.2px;
+            color: rgba(255, 255, 255, 0.72);
+        }
+    </style>
+</head>
+<body>
+    <h1>Gantt Chart</h1>
+    <p class="sub">Resident Management System — 1 Month Schedule</p>
+    <div class="wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Duration</th>
+                    <th class="gantt-head">Week 1</th>
+                    <th class="gantt-head">Week 2</th>
+                    <th class="gantt-head">Week 3</th>
+                    <th class="gantt-head">Week 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="task-name">Planning & requirements</td>
+                    <td>3–4 days</td>
+                    <td style="background: #5cb85c; opacity: 0.85;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="task-name">Database design & setup</td>
+                    <td>2–3 days</td>
+                    <td></td>
+                    <td style="background: #5bc0de; opacity: 0.85;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="task-name">Backend API (login, QR, scan)</td>
+                    <td>~1 week</td>
+                    <td style="background: #f0ad4e; opacity: 0.85;"></td>
+                    <td style="background: #f0ad4e; opacity: 0.85;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="task-name">Frontend (admin, resident, scan pages)</td>
+                    <td>~1 week</td>
+                    <td></td>
+                    <td style="background: #667eea; opacity: 0.85;"></td>
+                    <td style="background: #667eea; opacity: 0.85;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="task-name">Multi-language & UI polish</td>
+                    <td>3–4 days</td>
+                    <td></td>
+                    <td></td>
+                    <td style="background: #9b8de6; opacity: 0.85;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="task-name">Testing & bug fixes</td>
+                    <td>4–5 days</td>
+                    <td></td>
+                    <td></td>
+                    <td style="background: #d9534f; opacity: 0.85;"></td>
+                    <td style="background: #d9534f; opacity: 0.85;"></td>
+                </tr>
+                <tr>
+                    <td class="task-name">Deployment & documentation</td>
+                    <td>2–3 days</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="background: #764ba2; opacity: 0.85;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="margin-top: 16px; font-size: 12px; color: #666;">Schedule is indicative; some tasks may overlap.</p>
+    </div>
+    <footer class="site-footer">
+        <div class="site-footer-title">Resident Management System</div>
+        <div class="site-footer-copy">Copyright &copy; 2026 Desmond Liew. All Rights Reserved.</div>
+    </footer>
+</body>
+</html>
