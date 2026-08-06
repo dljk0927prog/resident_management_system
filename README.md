@@ -146,15 +146,11 @@ Camera preview on the scan page is omitted here (privacy / device UI). Features 
 |---|---|
 | ![Users](assets/screenshots/admin_users.png) | ![Resident](assets/screenshots/resident.png) |
 
-| Scan calendar | Activity monitor |
-|---|---|
-| ![Calendar](assets/screenshots/calendar.png) | ![Activity](assets/screenshots/activity.png) |
-
 ---
 
 ## 🎬 Demo Video
 
-Demo video coming soon.
+👉 **[Watch Demo Video](https://drive.google.com/file/d/1hbliD8HErFp-4yglu8zv7DwSVsZE3LrV/view?usp=sharing)**
 
 ---
 
@@ -162,6 +158,7 @@ Demo video coming soon.
 
 | Resource | Link |
 |---|---|
+| 🎬 Demo Video | [Watch](https://drive.google.com/file/d/1hbliD8HErFp-4yglu8zv7DwSVsZE3LrV/view?usp=sharing) |
 | 💻 Local (XAMPP) | `http://localhost/resident_management_system/` |
 | 📦 GitHub Repository | [dljk0927prog/resident_management_system](https://github.com/dljk0927prog/resident_management_system) |
 
